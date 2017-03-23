@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    //h1= title
+
+    link(rel="stylesheet" href="stylesheets/style.css")
+    ul#message_list
+    div#new_message.form
+        input#message_title(type="text" name="name" placeholder="Title")
+        textarea#message_input(name="comment" placeholder="Input Something...")
+        button#submit submit
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+    script(src="javascripts/index.js")

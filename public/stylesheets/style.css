@@ -1,0 +1,149 @@
+body {
+  padding: 20px 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+ul{
+  padding-left: 0px;
+}
+li {
+  list-style: none;
+  padding: 20px 10px;
+  margin:10px 0;
+  border-radius: 10px;
+  background-color: #ccc;
+}
+textarea{
+  resize:none;
+}
+/* Place Holder CSS */
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:-moz-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+::-moz-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:-ms-input-placeholder {
+  color: #000;
+  opacity: 0.5;
+  -ms-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:hover::-webkit-input-placeholder {
+  opacity: 0.75;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover:-moz-placeholder {
+  opacity: 0.75;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover::-moz-placeholder {
+  opacity: 0.75;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:hover:-ms-input-placeholder {
+  opacity: 0.75;
+  -ms-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Place Holder CSS for Focus */
+:focus::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:focus:-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:focus::-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+:focus:-ms-input-placeholder {
+  opacity: 0;
+  -ms-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+/* Custom Input Style */
+.form input, .form textarea
+{
+  font-size: 16px;
+  padding: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 3px solid #bbb;
+  line-height: 20px;
+  text-indent: 5px;
+  width: 400px;
+  display: block;
+  clear: both;
+  margin-bottom: 5px;
+}
+.form textarea
+{
+  height: 100px;
+}
+.form button
+{
+  font-size: 16px;
+  padding: 6px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 0px solid #333;
+  line-height: 20px;
+  width: 200px;
+  display: block;
+  clear: both;
+  margin-bottom: 5px;
+  margin-left: 213px;
+  background-color: #666;
+  color: #CCC;
+  cursor: pointer;
+}
+.form button:hover, .form button:focus
+{
+  outline: none;
+  background-color: #444;
+  color: #EEE;
+}
+.form input:hover, .form textarea:hover
+{
+  outline: none;
+  border-color: #AAA;
+}
+.form input:focus, .form textarea:focus
+{
+  outline: none;
+  border-color: #888;
+}
+
+/* Misc Styles */
+body
+{
+  background-color: #DDD;
+  padding: 20px;
+}
+

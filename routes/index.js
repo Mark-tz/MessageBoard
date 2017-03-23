@@ -3,7 +3,7 @@ var _und = require('underscore');
 var mongoose = require('mongoose');
 
 var router = express.Router();
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/board');
 //mongoose.set('debug', true);
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'db connection error!'));
@@ -34,7 +34,6 @@ router.get('/', function(req, res) {
 function get_message_list(req, res) {
     Message.find({}).exec(function (err, msg) {
         if (err) return console.log(err);
-        console.log(msg);
         res.json(msg);
     });
 }
@@ -43,18 +42,18 @@ function post_message(req, res) {
         res.statusCode = 400;
         return res.json({ error: 'Invalid message' });
     }
-    //console.log("MYPRINT : get message : text : " + req.body.text);
-    var maxID;
+
     Message.findOne({}).sort('-_id').exec(function(err,msg){
+        var maxID;
         if(err) return console.log(err);
-        maxID = msg._id;
+        if(!msg || !msg._id) maxID = 0;
+        else maxID = msg._id;
         nmsg = new Message({_id: maxID+1,title:req.body.title,body:req.body.body});
-        console.log(nmsg);
         nmsg.save(function(err){
             if(err) return console.log(err);
         });
     });
-    get_message_list(req,res);
+    res.json({});
     //var message = new Message()
     //Message.save
     //get_message_list(req, res);

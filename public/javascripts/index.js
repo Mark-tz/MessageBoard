@@ -24,22 +24,26 @@ $(function() {
     }
     function update_message_list(msg) {
         $("#message_list").html("");
-        console.log(msg);
-        //$("#message_list").append("<li>" + msg.title + " " + msg.date + "<br><br>" + msg.body + "</li>");
         $.each(msg, function(index, msg) {
-            $("#message_list").append("<li>" + msg.title + " " + msg.date + "<br><br>" + msg.body + "</li>");
+            var author = msg.authorID == 1 ? "Mark" : "Helen";
+            $("#message_list").append("<li>" + msg.date + "<br><br>" +
+                msg.title + "<br>" + msg.body + "</li>");
         });
     }
     ajax_get("/messages",update_message_list);
     $("#submit").click(function(){
         var title = $("#message_title").val();
         var body = $("#message_input").val();
+        body = body.replace(/\n\r?/g, '<br/>');
+        body = body.replace(/\t/g,'&nbsp');
         ajax_post("/messages",{title:title,body:body},function(data) {
             if(data.error){
                 console.log(data.error);
                 return;
             }
-            update_message_list(data);
+            ajax_get("/messages",update_message_list);
         });
+        $("#message_title").val('');
+        $("#message_input").val('');
     });
 });

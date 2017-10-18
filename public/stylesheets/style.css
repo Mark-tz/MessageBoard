@@ -8,9 +8,18 @@ ul{
 li {
   list-style: none;
   padding: 20px 10px;
-  margin:10px 0;
   border-radius: 10px;
   background-color: #ccc;
+}
+li.Sybil{
+  margin:10px 0% 10px 0%;
+  text-align: left;
+  background-color: #eebb88;
+}
+li.Mark{
+  margin:10px 0% 10px 0%;
+  text-align: left;
+  background-color: #88bbee;
 }
 textarea{
   resize:none;

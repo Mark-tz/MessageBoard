@@ -2,6 +2,7 @@
  * Created by Mark on 17/3/23.
  */
 $(function() {
+    var authorID = 1;
     function ajax_get(url,callback) {
         $.ajax({
             url: url,
@@ -25,8 +26,8 @@ $(function() {
     function update_message_list(msg) {
         $("#message_list").html("");
         $.each(msg, function(index, msg) {
-            var author = msg.authorID == 1 ? "Mark" : "Helen";
-            $("#message_list").append("<li>" + msg.date + "<br><br>" +
+            var author = msg.authorID == 1 ? "Sybil" : "Mark";
+            $("#message_list").append("<li class='" + author + "'>" + msg.date + "<br><br>" +
                 msg.title + "<br>" + msg.body + "</li>");
         });
     }
@@ -36,7 +37,7 @@ $(function() {
         var body = $("#message_input").val();
         body = body.replace(/\n\r?/g, '<br/>');
         body = body.replace(/\t/g,'&nbsp');
-        ajax_post("/messages",{title:title,body:body},function(data) {
+        ajax_post("/messages",{title:title,body:body,authorID:authorID},function(data) {
             if(data.error){
                 console.log(data.error);
                 return;
@@ -46,4 +47,9 @@ $(function() {
         $("#message_title").val('');
         $("#message_input").val('');
     });
+    window.r = function(id){
+        authorID = id || 0;
+        console.log(authorID);
+        return "Success";
+    }
 });

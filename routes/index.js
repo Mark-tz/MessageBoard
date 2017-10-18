@@ -38,9 +38,15 @@ function get_message_list(req, res) {
     });
 }
 function post_message(req, res) {
-    if(!req.body || !req.body.title || !req.body.body) {
+    if(!req.body || (!req.body.title && !req.body.body)) {
         res.statusCode = 400;
         return res.json({ error: 'Invalid message' });
+    }
+    if(!req.body.title){
+        req.body.title = "So Lazy & No Title."
+    }
+    if(!req.body.body){
+        req.body.body = "So Lazy & No Body."
     }
 
     Message.findOne({}).sort('-_id').exec(function(err,msg){
@@ -48,7 +54,7 @@ function post_message(req, res) {
         if(err) return console.log(err);
         if(!msg || !msg._id) maxID = 0;
         else maxID = msg._id;
-        nmsg = new Message({_id: maxID+1,title:req.body.title,body:req.body.body});
+        nmsg = new Message({_id: maxID+1,title:req.body.title,body:req.body.body,authorID:req.body.authorID});
         nmsg.save(function(err){
             if(err) return console.log(err);
         });

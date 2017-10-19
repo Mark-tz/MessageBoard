@@ -148,7 +148,17 @@ textarea{
   outline: none;
   border-color: #888;
 }
-
+.form.Mark button,.form.Sybil button{
+  color:#666;
+}
+.form.Mark *,.form.Mark *:hover,.form.Mark *:focus{
+  border-color: #88bbee;
+  background-color: #88bbee;
+}
+.form.Sybil *,.form.Sybil *:hover,.form.Sybil *:focus{
+  border-color: #eebb88;
+  background-color: #eebb88;
+}
 /* Misc Styles */
 body
 {

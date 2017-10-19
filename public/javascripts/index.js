@@ -49,7 +49,19 @@ $(function() {
     });
     window.r = function(id){
         authorID = id || 0;
-        console.log(authorID);
-        return "Success";
+        if(authorID == 0) {
+            $(".form").removeClass("Sybil");
+            $(".form").addClass("Mark");
+        }
+        else if(authorID == 1){
+            $(".form").removeClass("Mark");
+            $(".form").addClass("Sybil");
+        }else{
+            $(".form").removeClass("Mark");
+            $(".form").removeClass("Sybil");
+        }
+        console.log("change authorID to " + authorID);
+        return "Success : " + authorID;
     }
+    r(1);
 });

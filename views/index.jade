@@ -4,10 +4,19 @@ block content
     //h1= title
 
     link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/color.css")
+
     ul#message_list
-    center#new_message.form
-        input#message_title(type="text" name="name" placeholder="Title")
-        textarea#message_input(name="comment" placeholder="Input Something...")
-        button#submit submit
+    center#new_message
+        form#new_message_form.form(enctype='multipart/form-data')
+            input#message_title(type="text" name="message_title" placeholder="Title")
+            textarea#message_input(name="message_body" placeholder="Input Something...")
+            input#message_files(type="file" name="message_files" multiple="multiple")
+            button#submit submit
+    #image_stage
+        span#image_stage_text Esc to close
+        span#image_stage_close &times;
+        img#image_stage_content
+
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
     script(src="javascripts/index.js")

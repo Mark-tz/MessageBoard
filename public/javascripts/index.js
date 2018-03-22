@@ -14,6 +14,13 @@ $(function() {
         if(key.keyCode == 27)
             image_stage.style.display = "none";
     });
+    $(".message_div_files").on("change","input[type='file']",function(){
+        var filePath=$(this).val();
+        var arr=filePath.split('\\');
+        var fileName=arr[arr.length-1];
+        $(this).parent().html(fileName);
+    })
+
     function ajax_get(url,callback) {
         $.ajax({
             url: url,
@@ -66,7 +73,7 @@ $(function() {
         $(".messages_image").click(function(){
             image_stage.style.display = "block";
             image_stage_content.src = this.src;
-            image_stage_caption.innerHTML = this.alt;
+            //image_stage_caption.innerHTML = this.alt;
         });
     }
     ajax_get("/messages",update_message_list);

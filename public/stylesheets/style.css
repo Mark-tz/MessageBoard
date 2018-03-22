@@ -98,7 +98,7 @@ textarea{
 }
 
 /* Custom Input Style */
-.form input, .form textarea{
+.form input, .form textarea, .form .message_div_files{
   font-size: 16px;
   padding: 4px;
   -webkit-border-radius: 4px;
@@ -158,13 +158,36 @@ textarea{
   border-color:  rgb(255,177,27);
   background-color:  rgb(255,177,27);
 }
-#message_audio{
-  display:none;
+.form .message_div_files{
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  cursor: pointer;
+  color: #888;
+  overflow: hidden;
+  display: inline-block;
+  /*display: inline;
+  *zoom: 1*/
 }
-
+.message_div_files  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+.message_div_files:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
 
 /*image stage style*/
 .messages_image {
+    margin: 3px;
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;

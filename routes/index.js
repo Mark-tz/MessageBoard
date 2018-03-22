@@ -1,7 +1,8 @@
 var express = require('express');
-var _und = require('underscore');
 var mongoose = require('mongoose');
 
+var fs = require('fs');
+var multer  = require('multer')
 var router = express.Router();
 mongoose.connect('mongodb://localhost/board');
 //mongoose.set('debug', true);
@@ -21,6 +22,8 @@ var MessageSchema = mongoose.Schema({
     title:  String,
     authorID: {type:Number, ref:'Person',default: 1},
     body:   String,
+    img: [String],
+    music: [String],
     comments: [{ body: String, date: Date }],
     date: { type: Date, default: Date.now }
 });
@@ -37,33 +40,73 @@ function get_message_list(req, res) {
         res.json(msg);
     });
 }
-function post_message(req, res) {
-    if(!req.body || (!req.body.title && !req.body.body)) {
+function post_message(req,imageStr,audioStr) {
+    if(!req.body || (!req.body.message_title && !req.body.message_body)) {
         res.statusCode = 400;
         return res.json({ error: 'Invalid message' });
     }
-    if(!req.body.title){
-        req.body.title = "So Lazy & No Title."
+    if(!req.body.message_title){
+        req.body.message_title = "So Lazy & No Title."
     }
-    if(!req.body.body){
-        req.body.body = "So Lazy & No Body."
-    }
-
     Message.findOne({}).sort('-_id').exec(function(err,msg){
         var maxID;
         if(err) return console.log(err);
         if(!msg || !msg._id) maxID = 0;
         else maxID = msg._id;
-        nmsg = new Message({_id: maxID+1,title:req.body.title,body:req.body.body,authorID:req.body.authorID});
+        nmsg = new Message({_id: maxID+1,title:req.body.message_title,body:req.body.message_body,authorID:req.body.authorID,img:imageStr,music:audioStr});
         nmsg.save(function(err){
             if(err) return console.log(err);
         });
     });
-    res.json({});
-    //var message = new Message()
-    //Message.save
-    //get_message_list(req, res);
 }
 router.get('/messages',get_message_list);
-router.post('/messages',post_message);
+//multer
+var path = require('path')
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    let type = file.mimetype.split('/')[0];
+    if (type == 'image') {
+        cb(null,'./public/image');
+    }else if(type == "audio"){
+        cb(null,'./public/audio');
+    }else{
+        cb(null,'./public/upload');
+    }
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + Math.floor(Math.random() * 1000000000) + file.originalname);
+  }
+})
+var upload = multer({
+    storage : storage,
+    fileFilter: function (req, file, cb) {
+        let type = file.mimetype.split('/')[0];
+        if (type == 'image' || type == "audio") {
+            cb(null,true);
+        }else{
+            console.log("Not support type : ",type);
+            cb(null,false);
+        }
+    }
+ })
+var cpUpload = upload.fields([{name:'message_files'}]);
+router.post('/upload',cpUpload,function(req, res, next){
+    var files = req.files.message_files;
+    var imageArr = new Array();
+    var audioArr = new Array();
+    if(files){
+        for(var i=0;i<files.length;i++){
+            let type = files[i].mimetype.split('/')[0];
+            let name = path.basename(files[i].path);
+            if (type == 'image') {
+                imageArr.push(name);
+            }else if( type == "audio") {
+                audioArr.push(name);
+            }
+        }
+    }
+    console.log(imageArr,audioArr);
+    post_message(req,imageArr,audioArr);
+    res.send({ret_code: '0'});
+});
 module.exports = router;

@@ -1,13 +1,28 @@
-extends layout
-
-block content
-    //h1= title
-
+doctype html
+html.no-js(lang="en")
+  head
+    title= title
     link(rel="stylesheet" href="stylesheets/style.css")
+    link(rel="stylesheet" href="stylesheets/color.css")
+    link(rel="stylesheet" href="stylesheets/component.css")
+    script(src="javascripts/beforebody.js")
+  body
     ul#message_list
-    center#new_message.form
-        input#message_title(type="text" name="name" placeholder="Title")
-        textarea#message_input(name="comment" placeholder="Input Something...")
-        button#submit submit
+    center#new_message
+        form#new_message_form.form(enctype='multipart/form-data')
+            input#message_title(type="text" name="message_title" placeholder="Title")
+            textarea#message_input(name="message_body" placeholder="Input Something...")
+            input#message_files.inputfile.inputfile-1(type="file" name="message_files" multiple="multiple" data-multiple-caption="{count} files selected")
+            label(for="message_files")
+                svg(xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17")
+                    path(d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z")
+                span Choose a file&hellip;
+            button#submit submit
+    #image_stage
+        span#image_stage_text Esc to close
+        span#image_stage_close &times;
+        img#image_stage_content
+
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+    script(src="javascripts/custom-file-input.js")
     script(src="javascripts/index.js")

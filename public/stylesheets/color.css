@@ -1,0 +1,46 @@
+body{
+  background-color: #d6c4b5;
+}
+li {
+  background-color: #ccc;
+}
+li.Sybil{
+  background-color: #f3c21f;
+  color : #fff;
+}
+li.Mark{
+  background-color: #43b56a;
+  color : #fff;
+}
+.form button
+{
+  background-color: #666;
+  color: #CCC;
+}
+.form button:hover, .form button:focus
+{
+  outline: none;
+  background-color: #444;
+  color: #EEE;
+}
+.form input:hover, .form textarea:hover
+{
+  outline: none;
+  border-color: #AAA;
+}
+.form input:focus, .form textarea:focus
+{
+  outline: none;
+  border-color: #888;
+}
+.form.Mark button,.form.Sybil button{
+  color:#666;
+}
+.form.Mark *,.form.Mark *:hover,.form.Mark *:focus{
+  border-color:  rgb(70,93,76);
+  background-color: rgb(70,93,76);
+}
+.form.Sybil *,.form.Sybil *:hover,.form.Sybil *:focus{
+  border-color:  rgb(255,177,27);
+  background-color:  rgb(255,177,27);
+}

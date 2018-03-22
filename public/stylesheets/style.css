@@ -8,9 +8,20 @@ ul{
 li {
   list-style: none;
   padding: 20px 10px;
-  margin:10px 0;
   border-radius: 10px;
   background-color: #ccc;
+}
+li.Sybil{
+  margin:10px 0% 10px 0%;
+  text-align: left;
+  background-color: #f3c21f;
+  color : #fff;
+}
+li.Mark{
+  margin:10px 0% 10px 0%;
+  text-align: left;
+  background-color: #43b56a;
+  color : #fff;
 }
 textarea{
   resize:none;
@@ -139,11 +150,21 @@ textarea{
   outline: none;
   border-color: #888;
 }
-
+.form.Mark button,.form.Sybil button{
+  color:#666;
+}
+.form.Mark *,.form.Mark *:hover,.form.Mark *:focus{
+  border-color:  rgb(70,93,76);
+  background-color: rgb(70,93,76);
+}
+.form.Sybil *,.form.Sybil *:hover,.form.Sybil *:focus{
+  border-color:  rgb(255,177,27);
+  background-color:  rgb(255,177,27);
+}
 /* Misc Styles */
 body
 {
-  background-color: #DDD;
+  background-color: #d6c4b5;
   padding: 20px;
 }
 

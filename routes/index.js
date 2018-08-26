@@ -35,7 +35,7 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'One Gift' });
 });
 function get_message_list(req, res) {
-    Message.find({}).exec(function (err, msg) {
+    Message.find({}).sort({_id:1}).exec(function (err, msg) {
         if (err) return console.log(err);
         res.json(msg);
     });
